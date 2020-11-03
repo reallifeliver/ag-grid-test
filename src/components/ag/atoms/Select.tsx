@@ -3,16 +3,16 @@ import * as React from 'react';
 import {OptionHTMLAttributes, SelectHTMLAttributes} from "react";
 import styled from "@emotion/styled";
 
-interface Props {
-
+interface Props extends SelectHTMLAttributes<HTMLSelectElement>{
+  width: number
 };
 
-const StyledSelect = styled.select({
-  width: 40,
-  border: 'none'
-})
+const StyledSelect = styled.select<Props>`
+ width: ${props => props.width};
+ border: none;
+`
 
-const Select = ({children, ...rest}: SelectHTMLAttributes<HTMLSelectElement>) => {
+const Select = ({children, ...rest}: Props) => {
   return (
     <StyledSelect {...rest}>
       {children}
